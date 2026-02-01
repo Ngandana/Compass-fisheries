@@ -211,7 +211,7 @@ export default function App() {
       </div>
       <h1 className="text-4xl font-black text-gray-900 mb-2">Compas Fisheries</h1>
       <h2 className="text-2xl font-bold text-orange-600 mb-4">Hot Chips & Fish, Easy Order</h2>
-      <p className="text-lg text-gray-600 mb-12 max-w-xs font-medium">Order your chips and fish straight from here.</p>
+      <p className="text-lg text-gray-600 mb-12 max-w-xs font-medium">Order your chips and fish straight from here. Mojo!</p>
       
       <div className="space-y-4 w-full max-w-xs">
         <Button onClick={() => setView('menu')} className="w-full text-xl py-5">
