@@ -1,3 +1,45 @@
 @import './fonts.css';
 @import './tailwind.css';
 @import './theme.css';
+
+/* Scrollbar hide utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Desktop wrapper: give it a nice app-feel on wide screens ── */
+@media (min-width: 768px) {
+  /* Root container becomes a centered phone-like frame on desktop */
+  #root > div {
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 100vh;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.06), 0 8px 40px rgba(0,0,0,0.10);
+    border-radius: 0;
+    position: relative;
+  }
+
+  body {
+    background: linear-gradient(135deg, #f5f0eb 0%, #ede8e0 50%, #f0ece6 100%);
+    min-height: 100vh;
+  }
+
+  /* Admin dashboard breaks out of the phone frame — it's a full desktop UI */
+  .admin-full-width {
+    max-width: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Smooth page transitions */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
