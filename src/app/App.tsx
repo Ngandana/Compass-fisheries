@@ -165,9 +165,12 @@ const INITIAL_MENU: MenuItem[] = [
 ];
 
 // ─── Animation Variants ───────────────────────────────────────────────────────
+// `ease` must be a fixed 4-tuple, not number[] — framer-motion rejects the wider type.
+const EASE_OUT_QUAD: [number, number, number, number] = [0.25, 0.46, 0.45, 0.94];
+
 const pageVariants = {
   initial: { opacity: 0, y: 16 },
-  animate: { opacity: 1, y: 0, transition: { duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] } },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.28, ease: EASE_OUT_QUAD } },
   exit: { opacity: 0, y: -10, transition: { duration: 0.18 } },
 };
 
@@ -1333,7 +1336,9 @@ export default function App() {
         {view === 'confirmation'     && <ConfirmationPage key="confirmation" />}
         {view === 'track'            && <TrackPage key="track" />}
         {view === 'admin-login'      && <AdminLogin key="admin-login" />}
-        {view === 'admin-dashboard'  && <AdminDashboard key="admin-dashboard" />}
+        {/* The dashboard is gated on the auth flag, not just the view. Until this
+            check existed, `adminLoggedIn` was set on login and never read again. */}
+        {view === 'admin-dashboard'  && adminLoggedIn && <AdminDashboard key="admin-dashboard" />}
       </AnimatePresence>
       <Toaster position="top-center" richColors expand={false} />
     </div>
